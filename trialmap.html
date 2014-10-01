@@ -1,0 +1,103 @@
+<head>
+  <title>Trialmap</title>
+</head>
+
+<body>
+
+	{{> navbar}}
+
+	{{> map}}
+
+
+	<div class="container main_container">
+
+		{{> list}}
+
+		{{> details}}
+
+	</div>
+
+
+</body>
+
+
+
+<template name="map">
+    <div class="map_container">
+      <div id="map" class="map"></div>
+      <div class='add-new-spot btn btn-default'>Add new Spot</div>
+    </div>
+</template>
+
+
+<template name="list">
+	{{#if show_list}}
+		{{> filter}}
+		<ul class='spots_list'>
+			{{#each spots}}
+				<li>
+					<div class='spot_title'>{{name}}</div>
+					<div>Rating: {{rating}}</div>
+				</li>
+			{{/each}}
+		</ul>
+	{{/if}}
+</template>
+
+<template name="details">
+	{{#if show_details}}
+		{{#each spots}}
+			<div class='spot_details'>
+				<button type="button" class="back btn btn-default">
+					<span class="glyphicon glyphicon-chevron-left"></span> Back
+				</button>
+				{{#if preview}}
+					<button type="button" class="save btn btn-default">Save</button>
+				{{/if}}
+				<h2>{{#if preview}}<input type="text" class="name" value="{{name}}"/>{{else}}{{name}}{{/if}}</h2>
+				<div>Rating: {{#if preview}}<input type="number" class="rating" min="1" max="5" value="{{rating}}"/>{{else}}{{rating}}{{/if}}</div>
+			</div>
+		{{/each}}
+	{{/if}}
+</template>
+
+<template name="filter">
+	<div class="my_filter">
+		Min. Rating: 
+		<div class="btn-group">
+			<button type="button" class="btn btn-default rating-btn clear-rating">X</button>
+		{{#each rating_range}}
+	        
+	        <button type="button" class="btn btn-default rating-btn {{active}}">{{val}}</button>
+	    {{/each}}
+	    </div>
+	</div>
+</template>
+
+
+
+<template name="navbar">
+	
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	  <div class="container">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">Project name</a>
+	    </div>
+	    <div class="collapse navbar-collapse">
+	      <ul class="nav navbar-nav">
+	        <li class="active"><a href="#">Home</a></li>
+	        <li><a href="#about">About</a></li>
+	        <li><a href="#contact">Contact</a></li>
+	      </ul>
+	    </div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+
+</template>
