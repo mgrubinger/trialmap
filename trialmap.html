@@ -31,7 +31,7 @@
 
 
 <template name="list">
-	{{#if show_list}}
+	{{#if showList}}
 		{{> filter}}
 		<ul class='spots_list'>
 			{{#each spots}}
@@ -45,7 +45,7 @@
 </template>
 
 <template name="details">
-	{{#if show_details}}
+	{{#if showDetails}}
 		{{#each spots}}
 			<div class='spot_details'>
 				<button type="button" class="back btn btn-default">
@@ -53,6 +53,22 @@
 				</button>
 				{{#if preview}}
 					<button type="button" class="save btn btn-default">Save</button>
+					
+					{{#unless deleting}}
+						<button type="button" class="delete_1 btn btn-default">Delete</button>
+					{{/unless}}
+
+					{{#if deleting}}
+						<button type="button" class="delete_confirm btn btn-default">
+							<span class="delete_button_progress" style="width: {{deletingCountdown}}%"></span>
+							<span class='label'>Really?</span>	
+						</button>
+					{{/if}}
+
+
+					
+				{{else}}
+					<button type="button" class="edit btn btn-default">Edit</button>
 				{{/if}}
 				<h2>{{#if preview}}<input type="text" class="name" value="{{name}}"/>{{else}}{{name}}{{/if}}</h2>
 				<div>Rating: {{#if preview}}<input type="number" class="rating" min="1" max="5" value="{{rating}}"/>{{else}}{{rating}}{{/if}}</div>
@@ -66,9 +82,8 @@
 		Min. Rating: 
 		<div class="btn-group">
 			<button type="button" class="btn btn-default rating-btn clear-rating">X</button>
-		{{#each rating_range}}
-	        
-	        <button type="button" class="btn btn-default rating-btn {{active}}">{{val}}</button>
+		{{#each ratingRange}}
+	        <span class="rating-btn {{active}} ion-star"></span>
 	    {{/each}}
 	    </div>
 	</div>

@@ -48,4 +48,36 @@ body {
 	.btn.selected {
 		background-color: #006699;
 	}
+
+	.rating-btn {
+		margin: 0 3px; 
+		color: #666;
+		font-size: 16;
+		
+		&.selected {
+			color: rgb(255, 107, 0);
+		}
+	}
+
+}
+
+.delete_confirm {
+
+	position: relative;
+	overflow: hidden;
+
+	.delete_button_progress {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		background-color: rgb(205, 97, 97);
+		bottom: 0px;
+		width: 0%;
+		-webkit-transition: width 10ms;
+	}
+	.label {
+		color: #666;
+		z-index: 1;
+		position: relative;
+	}
 }
